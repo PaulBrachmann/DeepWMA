@@ -94,30 +94,30 @@ tmp_h5_feat = os.path.join(args.outputDir, args.outPrefix + '_tmp_feature.h5')
 if not os.path.exists(tmp_h5_feat):
 
     with h5py.File(args.inputFeat, "r") as f:
-        deep_wm_features = f['swm_feat'].value
-        other_wm_features = f['other_feat'].value
+        deep_wm_features = f['swm_feat'][()]
+        other_wm_features = f['other_feat'][()]
         x_train = np.concatenate((deep_wm_features, other_wm_features), axis=0)
-        # x_train = f['feat'].value
+        # x_train = f['feat'][()]
         print(script_name, 'Input SWM feat shape:', deep_wm_features.shape)
         print(script_name, 'Input other fiber fiber shape', other_wm_features.shape)
         print(script_name, 'Input original feat shape:', x_train.shape)
 
     with h5py.File(args.inputLabel, "r") as f:
-        y_train = f['label_array'].value.astype(int)
+        y_train = f['label_array'][()].astype(int)
         # # y_values is not used
-        # y_values = f['label_values'].value
-        y_names = f['label_names'].value
+        # y_values = f['label_values'][()]
+        y_names = f['label_names'][()]
         print(script_name, 'Input original y_names:', y_names)
         print(max(y_train))
 
     if args.validationFeat is not None:
         with h5py.File(args.validationFeat, "r") as f:
-            x_validation = f['feat'].value
+            x_validation = f['feat'][()]
 
         with h5py.File(args.validationLabel, "r") as f:
-            y_validation = f['label_array'].value.astype(int)
-            # y_value = f['label_values'].value
-            # y_names = f['label_names'].value
+            y_validation = f['label_array'][()].astype(int)
+            # y_value = f['label_values'][()]
+            # y_names = f['label_names'][()]
 
         idx_train = None
         idx_validation = None
@@ -207,11 +207,11 @@ else:
     # Used only when debugging.
     print(script_name, 'Loading existing tmp feat files....')
     with h5py.File(tmp_h5_feat, "r") as f:
-        x_train = f['x_train'].value
-        y_train = f['y_train'].value
-        x_validation = f['x_validation'].value
-        y_validation = f['y_validation'].value
-        y_names = f['y_names'].value
+        x_train = f['x_train'][()]
+        y_train = f['y_train'][()]
+        x_validation = f['x_validation'][()]
+        y_validation = f['y_validation'][()]
+        y_names = f['y_names'][()]
 
 print('')
 print('===================================')

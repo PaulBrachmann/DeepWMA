@@ -127,9 +127,9 @@ print(script_name, 'Feature matrix shape:', feat.shape)
 
 if args.groundTruthLabel is not None:
     with h5py.File(args.groundTruthLabel, "r") as f:
-        label_array = f['label_array'].value.astype(int)
-        label_values = f['label_values'].value
-        label_names = f['label_names'].value
+        label_array = f['label_array'][()].astype(int)
+        label_values = f['label_values'][()]
+        label_names = f['label_names'][()]
         # print script_name, 'Input label_names:'
         # print label_names
 else:

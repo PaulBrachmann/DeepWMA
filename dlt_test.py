@@ -117,21 +117,21 @@ params = np.load(args.inputModel.replace('_model.h5', '_params.npy'), allow_pick
 # Load label names in the model
 print(script_name, 'Load tracts names along with the model.')
 with h5py.File(args.modelLabelName, "r") as f:
-    y_names_in_model = f['y_names'].value
+    y_names_in_model = f['y_names'][()]
 
 # Load test data feature
 with h5py.File(args.inputFeat, "r") as f:
     print(script_name, 'Load input feature.')
-    x_test = f['feat'].value
+    x_test = f['feat'][()]
 
 # Generate ground truth labels for evaluation
 if args.inputLabel is not None:
 
     print(script_name, 'Load input label.')
     with h5py.File(args.inputLabel, "r") as f:
-        y_test = f['label_array'].value.astype(int)
-        # y_value = f['label_values'].value
-        y_names = f['label_names'].value
+        y_test = f['label_array'][()].astype(int)
+        # y_value = f['label_values'][()]
+        y_names = f['label_names'][()]
 
         # Used for generate ground truth label
         y_test_orig = y_test.copy()
@@ -197,7 +197,7 @@ else:
     print(script_name, 'Loading prediction result.')
     with h5py.File(output_multi_tract_predition_mask_path, "r") as f:
         y_prediction = f[
-            'y_prediction'].value
+            'y_prediction'][()]
 
 if args.tractVTKfile is not None:
 

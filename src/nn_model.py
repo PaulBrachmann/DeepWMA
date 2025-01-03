@@ -205,7 +205,7 @@ def CNN_simple_1D(x_train, y_train, x_test, y_test, num_classes, data_augmentati
 
 
 def predict(model, x_data, y_data=None, y_name=None, verbose=False):
-    y_prediction = model.predict_classes(x_data)
+    y_prediction = np.argmax(model.predict(x_data), axis=1)
 
     if y_data is not None:
 

@@ -7,25 +7,44 @@ This code implements a deep learning tractography segmentation method (DeepWMA) 
     Deep white matter analysis (DeepWMA): fast and consistent tractography segmentation.
     Medical Image Analysis 65 (2020): 101761
 
-This version updates the code to the latest Tensorflow 2 environment.
+This version updates the code to the latest Tensorflow 2 environment, TF 2.6, and new h5py versions.
 
-# Installation
+## Installation
 
-	conda create --name DeepWMA python=3.7
-	conda activate DeepWMA
+1. Install 3D Slicer (https://www.slicer.org) and SlicerDMRI (http://dmri.slicer.org)
+2. Clone this repository
+3. Inside of this repository, run:
+
+```sh
+conda create -n DeepWMA python=3.10.6 -y
+conda activate DeepWMA
+
+pip install git+https://github.com/SlicerDMRI/whitematteranalysis.git@165cfcdb321adf7177938d7c2f6723500cc4c9eb
+pip install tensorflow~=2.3
+pip install -U scikit-learn
 	
-	pip install git+https://github.com/SlicerDMRI/whitematteranalysis.git
-	pip install tensorflow-gpu==2.3.0
-	pip install -U scikit-learn 
-	
-	git clone https://github.com/zhangfanmark/DeepWMA.git
-	cd DeepWMA
+curl -LO https://github.com/zhangfanmark/DeepWMA/releases/download/v0.1-alpha/SegModels.zip
+tar -xzvf SegModels.zip
+rm SegModels.zip
 
-# Example
+curl -LO https://github.com/zhangfanmark/DeepWMA/releases/download/v0.1-alpha/TestData.zip
+tar -xzvf TestData.zip
+rm TestData.zip
+
+chmod +x ./run_DeepWMA.sh
+```
+
+Then configure the `run_DeepWMA.sh` file:
+
+- Adjust paths, use the `Slicer.app/Contents/MacOS/Slicer` executable if you are on MacOS
+
+## Example
 
 See the following script for instructions:
 
-	sh run_DeepWMA.sh
+```sh
+sh run_DeepWMA.sh
+```
 
 **Please cite the following papers:**
 

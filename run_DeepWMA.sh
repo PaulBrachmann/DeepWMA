@@ -1,7 +1,7 @@
 # prerequisite
 
 # 1. Install WMA package (https://github.com/SlicerDMRI/whitematteranalysis).
-# 2. Istall 3D Slicer (https://www.slicer.org) and SlicerDMRI (http://dmri.slicer.org).
+# 2. Install 3D Slicer (https://www.slicer.org) and SlicerDMRI (http://dmri.slicer.org).
 # 2. Download `SegModels.zip` (https://github.com/zhangfanmark/DeepWMA/releases) to the current folder, and `tar -xzvf SegModels.zip`
 # 3. Download `TestData.zip` (https://github.com/zhangfanmark/DeepWMA/releases) to the current folder, and `tar -xzvf TestData.zip`
 
